@@ -16,6 +16,7 @@ class UserController extends Controller
 
         //$users = \App\Models\User::paginate(10);
         $users = DB::table('users')
+        -> where('id', '!=', auth()->id())
         -> when($request->input('name'), function ($query, $name) {
             return $query->where('name', 'like', '%'.$name.'%');
         })
@@ -35,6 +36,9 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'User successfully created');
     }
 
+    /**
+     * This is handle event button action edit USERS
+     */
     public function edit($id) {
         $user = \App\Models\User::findOrFail($id);
         return view('pages.user.edit', compact('user'));
