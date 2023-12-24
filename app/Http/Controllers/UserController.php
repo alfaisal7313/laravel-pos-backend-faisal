@@ -50,6 +50,10 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'User successfully updated');
     }
 
+    /**
+     * This is action delete data user
+     * $user is reference data wil
+     */
     public function destroy(User $user) {
         $user->delete();
         return redirect()->route('user.index')->with('success', 'User successfully deleted');
