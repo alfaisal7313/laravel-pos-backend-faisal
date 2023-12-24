@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 
 class UserController extends Controller
@@ -32,5 +33,21 @@ class UserController extends Controller
         $data['password'] = Hash::make($request->password);
         \App\Models\User::create($data);
         return redirect()->route('user.index')->with('success', 'User successfully created');
+    }
+
+    public function edit($id) {
+        $user = \App\Models\User::findOrFail($id);
+        return view('pages.user.edit', compact('user'));
+    }
+
+    public function update(UpdateUserRequest $request, User $user) {
+        $data = $request->validated();
+        $user->update($data);
+        return redirect()->route('user.index')->with('success', 'User successfully updated');
+    }
+
+    public function destroy(User $user) {
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'User successfully deleted');
     }
 }

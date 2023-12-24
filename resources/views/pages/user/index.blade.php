@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Add Forms')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -66,6 +66,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Phone Number</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -74,6 +75,7 @@
                                             <tr>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phone }}</td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
