@@ -77,7 +77,13 @@
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->stock }}</td>
                                                 <td>{{ $product->category }}</td>
-                                                <td><img src="{{ $product->image }}" alt="{{ $product->name }}" width="100px" height="auto"></td>
+                                                <td>
+                                                    @if ($product->image)
+                                                        <img src="{{ asset('storage/products/'.$product->image) }}" alt="{{ $product->name }}" width="100px" height="auto" class="img--thumbnail">
+                                                    @else
+                                                        <span class="badge badge-danger">No Image</span>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
